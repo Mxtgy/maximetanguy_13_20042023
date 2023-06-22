@@ -1,12 +1,14 @@
-//import { NavLink } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import { useState } from "react";
-import { fetchLogin, fetchProfile} from '../../Utils/apiClient.js';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLogin, fetchProfile } from '../../Utils/apiClient.js';
+import { logUser } from '../../redux.js';
 
 function LoginForm() {
 
-    const [checkState, setCheckState] = useState(false);
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
     const [checkError, setCheckError] = useState(false);
 
     async function handleSubmit(e) {
@@ -19,21 +21,21 @@ function LoginForm() {
         if (username.length <= 1 || password.length <= 1) return;
     
         //CALL FETCH HERE
-        const call = await fetchLogin(username, password);
-        console.log(call);
-        if (!call) {setCheckError(true);return;};
-        if (call.status === "400" || call.status === "500") return setCheckError(true);
-        setCheckState(true);
-        const token = call.body.token;
+        const login = await fetchLogin(username, password);
+        if (!login || login.status === "400" || login.status === "500") return setCheckError(true);
+        
+        const token = login.body.token;
 
         //APPELER ET METTRE LES INFOS DANS LE STORE A CET ENDROIT
-        const callProfile = await fetchProfile(token);
-        console.log(callProfile);
+        const getProfile = await fetchProfile(token);
+        if (!getProfile || getProfile.status === "400" || getProfile.status === "500") return setCheckError(true);
+        getProfile.body.token = token;
+        dispatch(logUser(getProfile.body));
     }
 
     return (
         <>
-            { checkState && <Navigate to='/profile' /> }
+            { user.userId && <Navigate to='/profile' /> }
             <section className={ styles.sign_in_content }>    
                 <i className={ 'fa fa-user-circle ' + styles.sign_in_icon }></i>
                 <h1>Sign In</h1>
