@@ -36,6 +36,13 @@
 .main_nav_item {
     text-decoration: none;
     margin-right: 0.5rem;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    font-size: inherit;
+
 }
 
 .main_nav_item:hover {

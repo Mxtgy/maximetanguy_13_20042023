@@ -6,6 +6,19 @@
     background-color: #12002b;
 }
 
+.input_wrapper {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.input_wrapper input {
+    padding: 10px 5px 10px 10px;
+    font-size: 1.2rem;
+    border-color: grey;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
 .edit_button {
     border-color: #00bc77;
     background-color: #00bc77;
@@ -14,7 +27,22 @@
     padding: 10px;
 }
 
+.form_button {
+    border-color: #00bc77;
+    background-color: #FFFFFF;
+    color: #00bc77;
+    font-weight: bold;
+    width: 150px;
+    padding: 10px 0;
+    margin: 0 10px;
+}
+
 .header {
     color: #fff;
     margin-bottom: 2rem;
+}
+
+.error {
+    color: red;
+    margin: 0 0 5px;
 }

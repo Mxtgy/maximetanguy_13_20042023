@@ -1,4 +1,5 @@
-const METHOD = 'POST';
+const METHOD_POST = 'POST';
+const METHOD_PUT = 'PUT';
 
 async function fetchData(type, content) {
     const url = 'http://localhost:3001/api/v1/user' + type;
@@ -21,7 +22,7 @@ async function fetchLogin(username, password) {
         "password": password
     };
     const callObject = {
-        method: METHOD,
+        method: METHOD_POST,
         headers: {
             'Content-Type': 'application/json'
         },
@@ -33,7 +34,7 @@ async function fetchLogin(username, password) {
 async function fetchProfile(bearer) {
     const type = '/profile';
     const callObject = {
-        method: METHOD,
+        method: METHOD_POST,
         headers: {
             'Authorization': 'Bearer ' + bearer
         }
@@ -41,4 +42,21 @@ async function fetchProfile(bearer) {
     return fetchData(type, callObject);
 }
 
-export { fetchLogin, fetchProfile };
+async function updateUser(bearer, firstName, lastName) {
+    const type = '/profile';
+    const content =  {
+        "firstName": firstName,
+        "lastName": lastName
+    };
+    const callObject = {
+        method: METHOD_PUT,
+        headers: {
+            'Authorization': 'Bearer ' + bearer,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(content)
+    }
+    return fetchData(type, callObject);
+}
+
+export { fetchLogin, fetchProfile, updateUser };
