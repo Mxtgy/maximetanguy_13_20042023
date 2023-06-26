@@ -1,5 +1,8 @@
 import styles from './Hero.module.css';
 
+/* 
+This component is the hero located on the homepage.
+ */
 function Hero() {
     return (
         <div className={styles.hero}>

@@ -1,5 +1,8 @@
 import Account from '../Account/Account.js';
 
+/* 
+This component is the accounts area located on the profile page.
+ */
 function Accounts() {
     return (
         <>

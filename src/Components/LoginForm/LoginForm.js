@@ -5,12 +5,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchLogin, fetchProfile } from '../../Utils/apiClient.js';
 import { logUser } from '../../redux.js';
 
+/* 
+This component is the login form.
+ */
 function LoginForm() {
 
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const [checkError, setCheckError] = useState(false);
 
+    /*
+    Send the form to login the user and to get the user's profile.
+    Initiate two fetch calls (one to login and one to get the user's data) and also
+    store the user's data in redux.
+    */
     async function handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
@@ -20,13 +28,11 @@ function LoginForm() {
         if (!username || !password) return;
         if (username.length <= 1 || password.length <= 1) return;
     
-        //CALL FETCH HERE
         const login = await fetchLogin(username, password);
         if (!login || login.status === "400" || login.status === "500") return setCheckError(true);
         
         const token = login.body.token;
 
-        //APPELER ET METTRE LES INFOS DANS LE STORE A CET ENDROIT
         const getProfile = await fetchProfile(token);
         if (!getProfile || getProfile.status === "400" || getProfile.status === "500") return setCheckError(true);
         getProfile.body.token = token;

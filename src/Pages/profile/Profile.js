@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from '../../Utils/apiClient.js';
 import { editUser } from '../../redux.js';
 
+/*
+This is the component for the profile page.
+*/
 function Profile() {
 
     const user = useSelector((state) => state.user);
@@ -13,6 +16,11 @@ function Profile() {
     const [checkError, setCheckError] = useState(false);
     const [openForm, setOpenForm] = useState(false); 
 
+    /*
+    Send the form to change the user's firstname and/or lastname.
+    Initiate the fetch call to send the data to the back and
+    also store the changes in redux.
+    */
     async function handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
@@ -34,7 +42,7 @@ function Profile() {
 
                     { !openForm &&
                         <div>
-                            <h1>Welcome back<br />{user.firstName} {user.lastName}!</h1>
+                            <h1>Welcome back<br />{user.firstName} {user.lastName} !</h1>
                             <button onClick={() => setOpenForm(!openForm)} className={ styles.edit_button }>Edit Name</button>
                         </div>
                     }
@@ -54,7 +62,7 @@ function Profile() {
                 </div>
                 <Accounts />
             </main> :
-            <Navigate to='/login' /> }
+            <Navigate to='/' /> }
         </>
     );
 }

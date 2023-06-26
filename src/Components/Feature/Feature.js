@@ -1,5 +1,9 @@
 import styles from './Feature.module.css';
+import PropTypes from 'prop-types';
 
+/* 
+This component is a feature located on the homepage into the Features component.
+ */
 function Feature({ img, alt, title, text }) {
     return (
         <div className={styles.feature_item}>
@@ -8,6 +12,13 @@ function Feature({ img, alt, title, text }) {
             <p>{text}</p>
         </div>
     );
+}
+
+Feature.propTypes = {
+    img: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired, 
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired
 }
 
 export default Feature;
