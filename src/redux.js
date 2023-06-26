@@ -1,5 +1,9 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
+
+/*
+State management with redux.
+*/
 const userSlice = createSlice({
     name: "user",
     initialState: {},
