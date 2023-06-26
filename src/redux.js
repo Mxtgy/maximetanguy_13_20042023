@@ -2,11 +2,9 @@ import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
     name: "user",
-    initialState: {
-    },
+    initialState: {},
     reducers: {
         logUser: (state, action) => {
-            // { type: "user/logUser", payload: object }
             var payload = action.payload;
             if (payload.id && payload.firstName && payload.lastName && payload.email && payload.token) {
                 state.userId = payload.id;
@@ -17,12 +15,10 @@ const userSlice = createSlice({
             }
         },
         logoutUser: (state, action) => {
-            // { type: "user/logoutUser", payload: "flush" }
                 state = {};
                 return state;
         },
         editUser: (state, action) => {
-            // { type: "user/editUser", payload: object }
             var payload = action.payload;
             if (payload.firstName && payload.lastName) {
                 state.firstName = payload.firstName;

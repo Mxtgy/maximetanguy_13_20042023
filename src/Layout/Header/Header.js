@@ -4,6 +4,9 @@ import Logo from '../../Assets/Images/argentBankLogo.png';
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from '../../redux.js';
 
+/*
+This is the header component located on all the pages (part of the layout) 
+*/
 function Header() {
 
     const user = useSelector((state) => state.user);

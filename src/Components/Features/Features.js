@@ -4,6 +4,9 @@ import chatIcon from '../../Assets/Images/icon-chat.png';
 import moneyIcon from '../../Assets/Images/icon-money.png';
 import securityIcon from '../../Assets/Images/icon-security.png';
 
+/* 
+This component is the features area located on the homepage.
+ */
 function Features() {
     return (
         <section className={styles.features}>

@@ -1,5 +1,9 @@
 import styles from './Account.module.css';
+import PropTypes from 'prop-types';
 
+/* 
+This component is an account located on the profile page into the Accounts component.
+ */
 function Account({ title, amount, description }) {
     return (
         <section className={ styles.account }>
@@ -13,6 +17,12 @@ function Account({ title, amount, description }) {
             </div>
         </section>
     );
+}
+
+Account.propTypes = {
+    title: PropTypes.string.isRequired,
+    amount: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
 }
 
 export default Account;
